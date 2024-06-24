@@ -6,23 +6,32 @@ export const ReproComponent = component$(() => {
   const { togglePopover } = usePopover(popoverId);
 
   return (
+    <>
     <Popover.Root id={popoverId} bind:anchor={anchorRef} manual>
       {/* can be anywhere as long as ref is set */}
       <button
+        type="button"
         ref={anchorRef}
         class="popover-invoker"
-        preventdefault:click
-        onKeyDown$={async (e) => {
-          if (e.key === 'o') {
-            await togglePopover();
-          }
+        onClick$={async () => {
+            console.log("hi");
+            await togglePopover()
         }}
       >
-        Focus me and press the 'o' key!
+        Click me
       </button>
       <Popover.Panel class="popover-panel popover-programmatic">
         I'm a programmatically opened popover!
       </Popover.Panel>
     </Popover.Root>
+      <button
+        type="button"
+        onClick$={() => {
+            console.log("hiiiii");
+        }}
+      >
+        Click meeeee
+      </button>
+    </>
   );
 });
